@@ -55,6 +55,7 @@ function fetchData(){
 }
 
 function weatherDetails(info){
+    console.log(info)
     if(info.cod == "404"){ // if user entered city name isn't valid
         infoTxt.classList.replace("pending", "error");
         infoTxt.innerText = `${inputField.value} isn't a valid city name`;
@@ -66,19 +67,21 @@ function weatherDetails(info){
         const {temp, feels_like, humidity} = info.main;
 
         // using custom weather icon according to the id which api gives to us
-        if(id == 800){
-            wIcon.src = "icons/clear.svg";
-        }else if(id >= 200 && id <= 232){
-            wIcon.src = "icons/storm.svg";  
-        }else if(id >= 600 && id <= 622){
-            wIcon.src = "icons/snow.svg";
-        }else if(id >= 701 && id <= 781){
-            wIcon.src = "icons/haze.svg";
-        }else if(id >= 801 && id <= 804){
-            wIcon.src = "icons/cloud.svg";
-        }else if((id >= 500 && id <= 531) || (id >= 300 && id <= 321)){
-            wIcon.src = "icons/rain.svg";
-        }
+        // if(id == 800){
+        //     wIcon.src = "icons/clear.svg";
+        // }else if(id >= 200 && id <= 232){
+        //     wIcon.src = "icons/storm.svg";  
+        // }else if(id >= 600 && id <= 622){
+        //     wIcon.src = "icons/snow.svg";
+        // }else if(id >= 701 && id <= 781){
+        //     wIcon.src = "icons/haze.svg";
+        // }else if(id >= 801 && id <= 804){
+        //     wIcon.src = "icons/cloud.svg";
+        // }else if((id >= 500 && id <= 531) || (id >= 300 && id <= 321)){
+        //     wIcon.src = "icons/rain.svg";
+        // }
+
+        wIcon.src = `https://openweathermap.org/img/wn/${info.weather[0].icon}@2x.png`;
         
         //passing a particular weather info to a particular element
         weatherPart.querySelector(".temp .numb").innerText = Math.floor(temp);
