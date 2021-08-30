@@ -55,7 +55,7 @@ function fetchData(){
 }
 
 function weatherDetails(info){
-    console.log(info)
+
     if(info.cod == "404"){ // if user entered city name isn't valid
         infoTxt.classList.replace("pending", "error");
         infoTxt.innerText = `${inputField.value} isn't a valid city name`;
